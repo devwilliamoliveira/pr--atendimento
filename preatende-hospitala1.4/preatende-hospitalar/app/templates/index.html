@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block titulo %}Início{% endblock %}
+
+{% block conteudo %}
+<section class="hero">
+    <div class="hero__texto">
+        <span class="selo">Humanização digital no pré-atendimento</span>
+        <h1>Seu pré-atendimento hospitalar, rápido, humano e seguro.</h1>
+        <p>
+            Descreva seus sintomas em poucos minutos e receba uma classificação de prioridade
+            para orientar seu atendimento — enquanto a equipe de saúde já recebe suas informações
+            organizadas na fila, em tempo real.
+        </p>
+        <div class="hero__acoes">
+            <a href="{{ url_for('auth.registrar') }}" class="botao botao--primario botao--grande">Começar agora</a>
+            <a href="{{ url_for('auth.login') }}" class="botao botao--fantasma botao--grande">Já tenho conta</a>
+        </div>
+    </div>
+    <div class="hero__cartao" aria-hidden="true">
+        <div class="mini-card mini-card--vermelho">
+            <span class="mini-card__ponto"></span> Emergência — atendimento imediato
+        </div>
+        <div class="mini-card mini-card--laranja">
+            <span class="mini-card__ponto"></span> Muito urgente — até 10 min
+        </div>
+        <div class="mini-card mini-card--amarelo">
+            <span class="mini-card__ponto"></span> Urgente — até 60 min
+        </div>
+        <div class="mini-card mini-card--verde">
+            <span class="mini-card__ponto"></span> Pouco urgente — até 120 min
+        </div>
+    </div>
+</section>
+
+<section class="recursos">
+    <div class="recurso-card">
+        <h3>🩺 Triagem inteligente</h3>
+        <p>Classificação de risco inspirada no Protocolo de Manchester, priorizando quem precisa mais.</p>
+    </div>
+    <div class="recurso-card">
+        <h3>📱 Acesso multiplataforma</h3>
+        <p>Use pelo navegador (site responsivo, instalável como app) ou integre com nosso API REST.</p>
+    </div>
+    <div class="recurso-card">
+        <h3>🔒 Segurança em primeiro lugar</h3>
+        <p>Senhas criptografadas, sessões protegidas, autenticação por token e controle de acesso por perfil.</p>
+    </div>
+</section>
+{% endblock %}

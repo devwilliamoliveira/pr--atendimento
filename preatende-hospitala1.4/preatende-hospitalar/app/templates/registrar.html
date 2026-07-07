@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %}Criar conta{% endblock %}
+
+{% block conteudo %}
+<section class="cartao-formulario">
+    <h1>Criar conta</h1>
+    <p class="texto-suave">Cadastre-se para iniciar seu pré-atendimento.</p>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.nome.label }}
+            {{ form.nome(class_="entrada", autocomplete="name") }}
+            {% for erro in form.nome.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.email.label }}
+            {{ form.email(class_="entrada", autocomplete="email") }}
+            {% for erro in form.email.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.senha.label }}
+            {{ form.senha(class_="entrada", autocomplete="new-password") }}
+            {% for erro in form.senha.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.confirmar_senha.label }}
+            {{ form.confirmar_senha(class_="entrada", autocomplete="new-password") }}
+            {% for erro in form.confirmar_senha.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <button type="submit" class="botao botao--primario botao--largo">Criar conta</button>
+    </form>
+
+    <p class="texto-suave">Já tem conta? <a href="{{ url_for('auth.login') }}">Entrar</a></p>
+</section>
+{% endblock %}

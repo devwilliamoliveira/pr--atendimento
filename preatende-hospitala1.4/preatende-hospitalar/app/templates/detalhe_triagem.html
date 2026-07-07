@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block titulo %}Detalhe do pré-atendimento{% endblock %}
+
+{% block conteudo %}
+<section class="cartao-formulario cartao-formulario--largo">
+    <span class="etiqueta-cor etiqueta-cor--{{ triagem.classificacao_cor }}">{{ triagem.info_prioridade().label }}</span>
+    <h1>{{ triagem.queixa_principal }}</h1>
+    <p class="texto-suave">Registrado em {{ triagem.criado_em.strftime('%d/%m/%Y às %H:%M') }} por {{ triagem.paciente.nome }}</p>
+
+    <!-- INÍCIO DO BLOCO DE SENHA E MAPS -->
+    <div class="atendimento-info" style="margin: 24px 0; padding: 20px; border: 2px solid #e2e8f0; border-radius: 8px; text-align: center; background-color: #f8fafc;">
+        <h2 style="margin-bottom: 8px;">Sua Senha de Atendimento:</h2>
+        
+        <!-- O código abaixo pega apenas os 4 primeiros dígitos do ID para ficar curto e fácil (Ex: A-B450) -->
+        <h1 class="senha-destaque" style="font-size: 4em; color: #0f172a; margin: 10px 0; letter-spacing: 3px;">
+            <strong>{{ triagem.senha | default('A-' ~ (triagem.id | string)[:4] | upper, true) }}</strong>
+        </h1> 
+        
+        <hr style="margin: 20px 0; border: none; border-top: 1px solid #cbd5e1;">
+
+        <div class="instrucoes-mapa">
+            <p style="color: #b91c1c; font-size: 1.1em;"><strong>Atenção:</strong> O paciente precisa ir para o hospital mais próximo da região.</p>
+            <p style="margin-top: 15px;">
+                <a href="https://www.google.com/maps/search/hospital+mais+próximo" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 12px 20px; background-color: #0ea5e9; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; transition: background-color 0.3s;">
+                    📍 Clique aqui para verificar os hospitais no Maps
+                </a>
+            </p>
+        </div>
+    </div>
+    <!-- FIM DO BLOCO DE SENHA E MAPS -->
+
+    <div class="grade-detalhe">
+        <div><strong>Escala de dor:</strong> {{ triagem.escala_dor }}/10</div>
+        <div><strong>Pressão arterial:</strong> {{ triagem.pressao_sistolica or '—' }}/{{ triagem.pressao_diastolica or '—' }} mmHg</div>
+        <div><strong>Freq. cardíaca:</strong> {{ triagem.frequencia_cardiaca or '—' }} bpm</div>
+        <div><strong>Freq. respiratória:</strong> {{ triagem.frequencia_respiratoria or '—' }} rpm</div>
+        <div><strong>Temperatura:</strong> {{ triagem.temperatura or '—' }} °C</div>
+        <div><strong>Saturação O2:</strong> {{ triagem.saturacao_o2 or '—' }}%</div>
+    </div>
+
+    {% if triagem.sintomas %}
+    <h2 class="subtitulo">Sintomas relatados</h2>
+    <p>{{ triagem.sintomas }}</p>
+    {% endif %}
+
+    {% if current_user.is_profissional() %}
+    <h2 class="subtitulo">Motivo da classificação (uso interno)</h2>
+    <p class="texto-suave">{{ triagem.motivo_classificacao }} · Pontuação: {{ triagem.pontuacao_risco }}</p>
+
+    <h2 class="subtitulo">Atualizar status</h2>
+    <form method="POST" action="{{ url_for('web.atualizar_status', triagem_id=triagem.id) }}" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="campo">
+            {{ form.status.label }}
+            {{ form.status(class_="entrada") }}
+        </div>
+        <div class="campo">
+            {{ form.observacoes_profissional.label }}
+            {{ form.observacoes_profissional(class_="entrada", rows="3") }}
+        </div>
+        <button type="submit" class="botao botao--primario">Salvar</button>
+    </form>
+    {% else %}
+    <h2 class="subtitulo">Status atual</h2>
+    <p><strong>{{ triagem.status.replace('_', ' ') }}</strong> — tempo alvo: {{ triagem.info_prioridade().tempo_alvo }}</p>
+    {% endif %}
+</section>
+{% endblock %}

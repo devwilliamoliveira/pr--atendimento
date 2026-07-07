@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block titulo %}Entrar{% endblock %}
+
+{% block conteudo %}
+<section class="cartao-formulario">
+    <h1>Entrar</h1>
+    <p class="texto-suave">Acesse sua conta para registrar ou acompanhar seu pré-atendimento.</p>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.email.label }}
+            {{ form.email(class_="entrada", autocomplete="email", placeholder="voce@exemplo.com") }}
+            {% for erro in form.email.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.senha.label }}
+            {{ form.senha(class_="entrada", autocomplete="current-password") }}
+            {% for erro in form.senha.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <button type="submit" class="botao botao--primario botao--largo">Entrar</button>
+    </form>
+
+    <p class="texto-suave">Ainda não tem conta? <a href="{{ url_for('auth.registrar') }}">Cadastre-se</a></p>
+</section>
+{% endblock %}

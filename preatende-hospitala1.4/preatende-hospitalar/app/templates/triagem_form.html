@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block titulo %}Novo pré-atendimento{% endblock %}
+
+{% block conteudo %}
+<section class="cartao-formulario cartao-formulario--largo">
+    <h1>Novo pré-atendimento</h1>
+    <p class="texto-suave">
+        Preencha com atenção. Essas informações ajudam a equipe a priorizar seu atendimento.
+        Se você está passando por uma emergência grave, procure ajuda imediatamente.
+    </p>
+
+    <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="campo">
+            {{ form.queixa_principal.label }}
+            {{ form.queixa_principal(class_="entrada", placeholder="Ex.: dor de cabeça forte há 2 dias") }}
+            {% for erro in form.queixa_principal.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <div class="campo">
+            {{ form.sintomas.label }}
+            {{ form.sintomas(class_="entrada", rows="4", placeholder="Descreva com suas palavras...") }}
+        </div>
+
+        <div class="campo">
+            {{ form.escala_dor.label }}
+            {{ form.escala_dor(class_="entrada", min="0", max="10") }}
+            {% for erro in form.escala_dor.errors %}<span class="erro-campo">{{ erro }}</span>{% endfor %}
+        </div>
+
+        <fieldset class="campo campo--destaque">
+            <legend>{{ form.sinais_gravidade.label }}</legend>
+            <div class="lista-checkbox">
+                {% for subcampo in form.sinais_gravidade %}
+                    <label class="opcao-checkbox">
+                        {{ subcampo }} {{ subcampo.label.text }}
+                    </label>
+                {% endfor %}
+            </div>
+        </fieldset>
+
+        <h2 class="subtitulo">Sinais vitais (se souber ou tiver como medir)</h2>
+        <div class="grade-campos">
+            <div class="campo">
+                {{ form.pressao_sistolica.label }}
+                {{ form.pressao_sistolica(class_="entrada") }}
+            </div>
+            <div class="campo">
+                {{ form.pressao_diastolica.label }}
+                {{ form.pressao_diastolica(class_="entrada") }}
+            </div>
+            <div class="campo">
+                {{ form.frequencia_cardiaca.label }}
+                {{ form.frequencia_cardiaca(class_="entrada") }}
+            </div>
+            <div class="campo">
+                {{ form.frequencia_respiratoria.label }}
+                {{ form.frequencia_respiratoria(class_="entrada") }}
+            </div>
+            <div class="campo">
+                {{ form.temperatura.label }}
+                {{ form.temperatura(class_="entrada", step="0.1") }}
+            </div>
+            <div class="campo">
+                {{ form.saturacao_o2.label }}
+                {{ form.saturacao_o2(class_="entrada") }}
+            </div>
+        </div>
+
+        <button type="submit" class="botao botao--primario botao--largo">Enviar pré-atendimento</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+  "name": "PreAtende - Pré-atendimento Hospitalar",
+  "short_name": "PreAtende",
+  "description": "Sistema de pré-atendimento e triagem hospitalar digital.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f9f9",
+  "theme_color": "#0f7c86",
+  "icons": [
+    {
+      "src": "/static/img/icone.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

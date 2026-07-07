@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titulo %}Meu histórico{% endblock %}
+
+{% block conteudo %}
+<section class="cabecalho-pagina">
+    <h1>Meu histórico de pré-atendimentos</h1>
+    <a href="{{ url_for('web.nova_triagem') }}" class="botao botao--primario">+ Novo pré-atendimento</a>
+</section>
+
+{% if triagens %}
+<div class="lista-cartoes">
+    {% for t in triagens %}
+    <a href="{{ url_for('web.detalhe_triagem', triagem_id=t.id) }}" class="cartao-triagem cartao-triagem--{{ t.classificacao_cor }}">
+        <div class="cartao-triagem__topo">
+            <span class="etiqueta-cor etiqueta-cor--{{ t.classificacao_cor }}">{{ t.info_prioridade().label }}</span>
+            <span class="cartao-triagem__data">{{ t.criado_em.strftime('%d/%m/%Y %H:%M') }}</span>
+        </div>
+        <h3>{{ t.queixa_principal }}</h3>
+        <p>Status: <strong>{{ t.status.replace('_', ' ') }}</strong></p>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p class="texto-suave">Você ainda não registrou nenhum pré-atendimento.</p>
+{% endif %}
+{% endblock %}
