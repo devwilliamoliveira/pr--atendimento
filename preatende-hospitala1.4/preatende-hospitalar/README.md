@@ -147,15 +147,6 @@ Além disso, como o site é um **PWA**, o usuário pode abri-lo no celular e esc
 "Adicionar à tela inicial" para usá-lo como um aplicativo instalado, sem precisar
 de loja de aplicativos.
 
----
-
-## 🎨 Sobre o visual
-
-O layout foi desenhado com uma identidade de **healthtech humanizada**: cores em
-tons de azul-petróleo/verde-água, cartões arredondados, tipografia limpa e foco em
-acessibilidade — inspirado na linguagem visual comum a soluções de tecnologia
-hospitalar digital e humanização do atendimento. Não reproduz elementos de marca,
-logotipo ou código de nenhum site de terceiros específico.
 
 ---
 
