@@ -1,17 +1,17 @@
-# 🏥 PreAtende — Sistema de Pré-atendimento Hospitalar
+#  PreAtende — Sistema de Pré-atendimento Hospitalar
 
 Sistema web de **pré-atendimento e triagem hospitalar**, feito em **Python (Flask)**,
 acessível tanto pelo **navegador (HTML responsivo, instalável como app/PWA)** quanto
 por uma **API REST em JSON** pronta para ser consumida por um aplicativo móvel
 (Flutter, React Native, Ionic, etc.) ou qualquer outro cliente HTTP.
 
-> ⚠️ **Aviso importante:** este software é uma ferramenta de apoio à priorização de
+>  **Aviso importante:** este software é uma ferramenta de apoio à priorização de
 > atendimento. Ele **não substitui** avaliação médica presencial. Em emergências reais,
 > procure imediatamente o pronto-socorro ou o serviço de emergência local (192/193 no Brasil).
 
 ---
 
-## ✨ Funcionalidades
+##  Funcionalidades
 
 - **Cadastro e login de pacientes** (senha com hash seguro, sessão protegida).
 - **Formulário de pré-atendimento**: queixa principal, sintomas, escala de dor,
@@ -28,7 +28,7 @@ por uma **API REST em JSON** pronta para ser consumida por um aplicativo móvel
 
 ---
 
-## 🔒 Segurança implementada
+##  Segurança implementada
 
 - Senhas com hash (`werkzeug.security`), nunca armazenadas em texto puro.
 - Sessões web via `Flask-Login` com cookies `HttpOnly` e `SameSite=Lax`.
@@ -51,7 +51,7 @@ por uma **API REST em JSON** pronta para ser consumida por um aplicativo móvel
 
 ---
 
-## 🗂️ Estrutura do projeto
+##  Estrutura do projeto
 
 ```
 preatende-hospitalar/
@@ -77,7 +77,7 @@ preatende-hospitalar/
 
 ---
 
-## 🚀 Como rodar localmente
+##  Como rodar localmente
 
 ### 1. Pré-requisitos
 - Python 3.10+
@@ -125,7 +125,7 @@ python -m pytest -v
 
 ---
 
-## 📱 Acesso via aplicativo (mobile)
+##  Acesso via aplicativo (mobile)
 
 O sistema expõe uma **API REST em `/api/v1`** que pode ser usada por um app mobile
 nativo ou híbrido (Flutter, React Native, Ionic, Kotlin, Swift, etc.). Principais endpoints:
@@ -150,7 +150,7 @@ de loja de aplicativos.
 
 ---
 
-## 🧭 Roadmap sugerido (próximos passos)
+##  Próximos passos
 
 - [ ] Enviar notificações (e-mail/SMS/push) quando o status do pré-atendimento mudar.
 - [ ] Painel de métricas para gestores (tempo médio de espera por cor de risco).
@@ -160,6 +160,6 @@ de loja de aplicativos.
 
 ---
 
-## 📄 Licença
+## Licença
 
 Distribuído sob a licença MIT — veja [LICENSE](LICENSE).
